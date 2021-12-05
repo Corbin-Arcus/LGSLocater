@@ -1,5 +1,4 @@
 const { validationResult } = require('express-validator');
-const { ValidationError } = require('sequelize/types');
 
 // Middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's docs)
