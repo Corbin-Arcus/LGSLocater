@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/events'
+import * as storeActions from '../../store/stores'
 
 function CreateEventPage() {
   const dispatch = useDispatch();
@@ -29,14 +30,15 @@ function CreateEventPage() {
     }
     else{
       setErrors([])
-      return dispatch(eventActions.createAnEvent({ name, eventGame, storeId }))
+      return dispatch(eventActions.createAnEvent({ name, eventGame }))
         .catch(async (res) => {
           const data = await res.json();
           if(data && data.errors) setErrors(data.errors)
         })
     }
   };
-
+    const stores = dispatch(storeActions.getAllStores())
+    console.log(stores)
   return (
     <div className='createEventForm'>
       <form onSubmit={handleSubmit}>
@@ -64,7 +66,7 @@ function CreateEventPage() {
         <label>
           Store
           <select
-            {}
+
 
           />
         </label>
