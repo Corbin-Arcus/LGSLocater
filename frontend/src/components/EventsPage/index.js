@@ -10,11 +10,10 @@ function EventPage() {
   useEffect(() => {
     dispatch(eventActions.setEvents())
   },[dispatch])
-  console.log(eventsArr)
   return (
     <div>
       {eventsArr.map(event =>
-        <p>{event.name}</p>
+        <h1><a href={event.id}>{event.name}</a></h1>
       )}
     </div>
   )

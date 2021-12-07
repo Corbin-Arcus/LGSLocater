@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "groupId"
     })
 
-    Group.belongsTo(models.Event, {
+    Group.hasMany(models.Event, {
       as: "event",
       foreignKey: "groupId"
     })
   };
+
   return Group;
 };

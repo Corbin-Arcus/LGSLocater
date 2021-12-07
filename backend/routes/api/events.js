@@ -33,5 +33,17 @@ router.post(
   })
 )
 
+// Get event by ID
+router.get(
+  '/:id(\\d+)',
+  asyncHandler(async (req, res) => {
+    const eventId = req.params.id
+    const event = await Event.findByPk(eventId)
+    res.json({
+      event
+    })
+  })
+)
+
 
 module.exports = router;
