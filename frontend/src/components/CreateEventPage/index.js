@@ -37,8 +37,13 @@ function CreateEventPage() {
         })
     }
   };
-    const stores = dispatch(storeActions.getAllStores())
-    console.log(stores)
+    useEffect(() => {
+      dispatch(storeActions.getAllStores())
+    },[dispatch])
+    const stores = useSelector(state => state.stores)
+    const storesArr = Object.values(stores)
+    console.log(storesArr)
+
   return (
     <div className='createEventForm'>
       <form onSubmit={handleSubmit}>
@@ -65,10 +70,9 @@ function CreateEventPage() {
         </label>
         <label>
           Store
-          <select
-
-
-          />
+          <select>
+            {storesArr.map(store => <option value={store.id}> {store.name}</option>)}
+          </select>
         </label>
         <button type="submit">Create Event</button>
       </form>

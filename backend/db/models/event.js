@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "groupId"
     });
 
-    Event.hasOne(models.Store, {
+    Event.belongsTo(models.Store, {
       as: "store",
       foreignKey: "storeId"
     })
