@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import eventReducer from "./events";
 import sessionReducer from "./session";
 import storesReducer from "./stores";
+import groupsReducer from "./groups";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   event: eventReducer,
-  stores: storesReducer
+  stores: storesReducer,
+  groups: groupsReducer
 });
 
 let enhancer;

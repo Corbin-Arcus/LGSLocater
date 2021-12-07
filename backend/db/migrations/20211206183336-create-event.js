@@ -11,7 +11,6 @@ module.exports = {
       storeId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
         refrences: {
           model: "Stores"
         }
@@ -23,8 +22,7 @@ module.exports = {
       },
       eventGame: {
         type: Sequelize.STRING(256),
-        allowNull: false,
-        unique: true
+        allowNull: false
       },
       groupId: {
         type: Sequelize.INTEGER,

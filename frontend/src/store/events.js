@@ -28,12 +28,13 @@ export const setEvents = () => async (dispatch) => {
 }
 
 export const createAnEvent = (event) => async (dispatch) => {
-  const { name, eventGame } = event;
+  const { name, eventGame, storeId} = event;
   const res = await csrfFetch('/api/events', {
     method: 'POST',
     body: JSON.stringify({
       name,
-      eventGame
+      eventGame,
+      storeId
     })
   })
   const data = await res.json()

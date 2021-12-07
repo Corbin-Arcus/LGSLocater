@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/events'
 import * as storeActions from '../../store/stores'
+import * as groupActions from '../../store/groups'
 
 function CreateEventPage() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [eventGame, setEventGame] = useState("");
   const [errors, setErrors] = useState([]);
+  const [storeId, setStoreId] = useState(0)
+  const [groupId, setGroupId] = useState(0)
 
 
 
@@ -30,19 +33,27 @@ function CreateEventPage() {
     }
     else{
       setErrors([])
-      return dispatch(eventActions.createAnEvent({ name, eventGame }))
+      setEventGame('')
+      setName('')
+      setStoreId(0)
+      return dispatch(eventActions.createAnEvent({ name, eventGame, storeId }))
         .catch(async (res) => {
           const data = await res.json();
           if(data && data.errors) setErrors(data.errors)
         })
+
     }
   };
     useEffect(() => {
       dispatch(storeActions.getAllStores())
+      dispatch(groupActions.getAllGroups())
     },[dispatch])
+
+
     const stores = useSelector(state => state.stores)
     const storesArr = Object.values(stores)
-    console.log(storesArr)
+    const groups = useSelector(state => state.groups)
+    const groupsArr = Object.values(groups)
 
   return (
     <div className='createEventForm'>
@@ -61,17 +72,29 @@ function CreateEventPage() {
         </label>
         <label>
           Event Game
-          <input
-            type="text"
-            value={eventGame}
-            onChange={(e) => setEventGame(e.target.value)}
-            required
-          />
+          <select
+          value={eventGame}
+          required
+          onChange={(e) => setEventGame(e.target.value)}
+          >
+            <option></option>
+            <option value='Magic the Gathering'>Magic the Gathering</option>
+            <option value='Vanguard'>Vanguard</option>
+            <option value='Warhammer'>Warhammer</option>
+          </select>
         </label>
         <label>
           Store
-          <select>
-            {storesArr.map(store => <option value={store.id}> {store.name}</option>)}
+          <select value={storeId} required onChange={(e) => setStoreId(e.target.value)}>
+            <option></option>
+            {storesArr.map(store => <option value={store.id}> {store.storeName}</option>)}
+          </select>
+        </label>
+        <label>
+          Group
+          <select value={groupId} required onChange={(e) => setGroupId(e.target.value)}>
+            <option></option>
+            {groupsArr.map(group => <option value={group.id}> {group.groupGame}</option>)}
           </select>
         </label>
         <button type="submit">Create Event</button>

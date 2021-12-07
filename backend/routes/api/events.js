@@ -21,11 +21,12 @@ router.get(
 router.post(
   '/',
   asyncHandler(async(req,res) => {
-    const { name, eventGame } = req.body
+    const { name, eventGame, storeId } = req.body
 
     const newEvent = await Event.create({
       name: name,
-      eventGame: eventGame
+      eventGame: eventGame,
+      storeId: storeId
     })
 
     return newEvent
