@@ -1,8 +1,15 @@
 import { csrfFetch } from './csrf'
 
+const SET_EVENT = 'event/setEvent'
 const CREATE_EVENT = 'event/creatEvent'
 const REMOVE_EVENT = 'event/removeEvent'
 
+const setEvent = (event) => {
+  return{
+    type: SET_EVENT,
+    payload: event
+  }
+}
 
 const createEvent = (event) => {
   return{
@@ -11,9 +18,18 @@ const createEvent = (event) => {
   }
 }
 
-export const createEvent = (event) => async (dispatch) => {
+export const setEvents = () => async (dispatch) => {
+  const res = await csrfFetch('/api/events', {
+    method: 'GET'
+  })
+  const data = await res.json()
+  console.log(`The return value of the csrfFetch is ${data.events}`)
+  dispatch(setEvent(data.events))
+}
+
+export const createAnEvent = (event) => async (dispatch) => {
   const { name, eventGame } = event;
-  const res = await csrfFetch('/api/event', {
+  const res = await csrfFetch('/api/events', {
     method: 'POST',
     body: JSON.stringify({
       name,
@@ -21,21 +37,22 @@ export const createEvent = (event) => async (dispatch) => {
     })
   })
   const data = await res.json()
-  dispatch(creatEvent(data.event))
+  dispatch(createEvent(data.events))
 }
 
-const initialState = { event: null };
-
-const eventReducer = (state = initialState, action) => {
+const eventReducer = (state = {}, action) => {
   let newState;
   switch(action.type) {
-    case CREATE_EVENT:
-      newState = Object.assign({}, state)
-      newState.event = action.payload
+    case SET_EVENT:
+      newState = {...state, ...action.payload}
       return newState
-    default:
-      return state;
+    case CREATE_EVENT:
+      newState = {...state, ...action.payload}
+      return newState
+      default:
+        return state;
+      }
   }
-}
+
 
 export default eventReducer;

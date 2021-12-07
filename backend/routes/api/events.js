@@ -10,7 +10,7 @@ router.get(
   '/',
   asyncHandler(async(req,res) => {
     const events = await Event.findAll()
-
+    console.log(events)
     res.json({
       events
     })
