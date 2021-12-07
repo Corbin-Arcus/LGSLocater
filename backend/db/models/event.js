@@ -20,13 +20,13 @@ module.exports = (sequelize, DataTypes) => {
   Event.associate = function(models) {
     // associations can be defined here
     Event.hasMany(models.Group, {
-      as: groups,
-      foreignKey: groupId
+      as: "groups",
+      foreignKey: "groupId"
     });
 
     Event.hasOne(models.Store, {
-      as: store,
-      foreignKey: storeId
+      as: "store",
+      foreignKey: "storeId"
     })
   };
   return Event;

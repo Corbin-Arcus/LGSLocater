@@ -11,12 +11,18 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
+        unique: true,
+        refrences: {
+          model: "Users"
+        }
       },
       groupId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
+        unique: true,
+        refrences: {
+          model: "Groups"
+        }
       },
       createdAt: {
         allowNull: false,

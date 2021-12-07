@@ -11,7 +11,10 @@ module.exports = {
       storeId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
+        unique: true,
+        refrences: {
+          model: "Stores"
+        }
       },
       name: {
         type: Sequelize.STRING(30),
@@ -25,7 +28,10 @@ module.exports = {
       },
       groupId: {
         type: Sequelize.INTEGER,
-        unique: true
+        unique: true,
+        refrences: {
+          model: "Groups"
+        }
       },
       createdAt: {
         allowNull: false,

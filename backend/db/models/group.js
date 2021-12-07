@@ -7,13 +7,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Group.associate = function(models) {
     Group.hasMany(models.UserGroup, {
-      as: userGroups,
-      foreignKey: groupId
+      as: "userGroups",
+      foreignKey: "groupId"
     })
 
-    Group.belongsTo(model.Event, {
-      as: event,
-      foreignKey: groupId
+    Group.belongsTo(models.Event, {
+      as: "event",
+      foreignKey: "groupId"
     })
   };
   return Group;

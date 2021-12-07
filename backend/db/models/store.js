@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Store.associate = function(models) {
     // associations can be defined here
-    Store.belongsTo(model.Event, {
-      as: event,
-      foreignKey: storeId
+    Store.belongsTo(models.Event, {
+      as: "event",
+      foreignKey: "storeId"
     })
   };
   return Store;
