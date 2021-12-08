@@ -57,7 +57,7 @@ router.post(
       groupId
     } = req.body
 
-    const event = await Event.findbyPK(eventId)
+    const event = await Event.findByPk(eventId)
 
     event.storeId = storeId;
     event.name = name;

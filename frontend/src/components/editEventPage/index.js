@@ -4,6 +4,7 @@ import * as eventActions from '../../store/events'
 import * as storeActions from '../../store/stores'
 import * as groupActions from '../../store/groups'
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router';
 
 function EditEventPage() {
   const dispatch = useDispatch()
@@ -15,8 +16,12 @@ function EditEventPage() {
   const [eventId, setEventId] = useState(0)
 
   const { id } = useParams()
-  setEventId(id)
+  useEffect(() => {
+    setEventId(id)
+  })
 
+
+  let history = useHistory()
   const handleSubmit = (e) => {
     e.preventDefault();
     if(name.length < 5 || name.length > 100){
@@ -34,6 +39,7 @@ function EditEventPage() {
           if(data && data.errors) setErrors(data.errors)
         })
     }
+    history.push('/events')
   };
 
   useEffect(() => {
