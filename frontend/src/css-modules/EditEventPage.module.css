@@ -1,0 +1,24 @@
+.outer{
+  background-color: lightblue;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.editEventForm{
+  margin-top: 15px;
+  padding-top: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 25px;
+  width: fit-content;
+  border-radius: 50px;
+  border: 3px solid black;
+  height:fit-content;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

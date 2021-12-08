@@ -4,6 +4,7 @@ import * as eventActions from '../../store/events'
 import * as storeActions from '../../store/stores'
 import * as groupActions from '../../store/groups'
 import { useHistory } from 'react-router';
+import styles from '../../css-modules/CreateEventPage.module.css'
 
 function CreateEventPage() {
   const dispatch = useDispatch();
@@ -47,49 +48,51 @@ function CreateEventPage() {
     const groupsArr = Object.values(groups)
 
   return (
-    <div className='createEventForm'>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Event Name
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+    <div className={styles.outer}>
+      <div className={styles.createEventForm}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+          <label>
+            Event Name
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Event Game
+            <select
+            value={eventGame}
             required
-          />
-        </label>
-        <label>
-          Event Game
-          <select
-          value={eventGame}
-          required
-          onChange={(e) => setEventGame(e.target.value)}
-          >
-            <option></option>
-            <option value='Magic the Gathering'>Magic the Gathering</option>
-            <option value='Vanguard'>Vanguard</option>
-            <option value='Warhammer'>Warhammer</option>
-          </select>
-        </label>
-        <label>
-          Store
-          <select value={storeId} required onChange={(e) => setStoreId(e.target.value)}>
-            <option></option>
-            {storesArr.map(store => <option key={store.id} value={store.id}> {store.storeName}</option>)}
-          </select>
-        </label>
-        <label>
-          Group
-          <select value={groupId} required onChange={(e) => setGroupId(e.target.value)}>
-            <option></option>
-            {groupsArr.map(group => <option key={group.id} value={group.id}> {group.groupName}</option>)}
-          </select>
-        </label>
-        <button type="submit">Create Event</button>
-      </form>
+            onChange={(e) => setEventGame(e.target.value)}
+            >
+              <option></option>
+              <option value='Magic the Gathering'>Magic the Gathering</option>
+              <option value='Vanguard'>Vanguard</option>
+              <option value='Warhammer'>Warhammer</option>
+            </select>
+          </label>
+          <label>
+            Store
+            <select value={storeId} required onChange={(e) => setStoreId(e.target.value)}>
+              <option></option>
+              {storesArr.map(store => <option key={store.id} value={store.id}> {store.storeName}</option>)}
+            </select>
+          </label>
+          <label>
+            Group
+            <select value={groupId} required onChange={(e) => setGroupId(e.target.value)}>
+              <option></option>
+              {groupsArr.map(group => <option key={group.id} value={group.id}> {group.groupName}</option>)}
+            </select>
+          </label>
+          <button type="submit">Create Event</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -81,6 +81,8 @@ router.delete(
     const event = await Event.findByPk(eventId)
 
     await event.destroy()
+
+    return res.json({})
   })
 )
 

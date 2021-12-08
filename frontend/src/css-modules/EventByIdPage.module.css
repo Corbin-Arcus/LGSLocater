@@ -1,0 +1,18 @@
+.outer{
+  background-color: lightblue;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.container{
+  display: inline-block;
+  margin-top: 15px;
+  height: 85vh;
+  width: 75vw;
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  border: 3px solid black
+}

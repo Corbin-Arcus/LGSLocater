@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/events'
 import * as storeActions from '../../store/stores'
 import { useParams } from 'react-router-dom';
+import styles from '../../css-modules/EventByIdPage.module.css'
 
 
 function EventByIdPage() {
@@ -18,10 +19,12 @@ function EventByIdPage() {
   },[event])
   const store = useSelector(state => state.stores)
   return(
-  <div>
-    <h1>{event.name}</h1>
-    <h2>This event is held at: {store.storeName}</h2>
-    <h2>This events game will be: {event.eventGame}</h2>
+  <div className={styles.outer}>
+    <div className={styles.container}>
+      <h1>{event.name}</h1>
+      <h2>This event is held at: {store.storeName}</h2>
+      <h2>This events game will be: {event.eventGame}</h2>
+    </div>
   </div>
 )
 }

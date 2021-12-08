@@ -101,7 +101,7 @@ const eventReducer = (state = {}, action) => {
   let newState;
   switch(action.type) {
     case SET_EVENT:
-      newState = {...state, ...action.payload}
+      newState = {...action.payload}
       return newState
     case CREATE_EVENT:
       newState = {...state, ...action.payload}
@@ -111,6 +111,9 @@ const eventReducer = (state = {}, action) => {
       return newState
     case DELETE_EVENT:
       return state
+    case EDIT_EVENT:
+      newState = {...action.payload}
+      return newState
     default:
       return state;
       }
