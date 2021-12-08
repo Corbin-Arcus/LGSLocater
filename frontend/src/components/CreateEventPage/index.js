@@ -86,7 +86,7 @@ function CreateEventPage() {
           Group
           <select value={groupId} required onChange={(e) => setGroupId(e.target.value)}>
             <option></option>
-            {groupsArr.map(group => <option key={group.id} value={group.id}> {group.groupGame}</option>)}
+            {groupsArr.map(group => <option key={group.id} value={group.id}> {group.groupName}</option>)}
           </select>
         </label>
         <button type="submit">Create Event</button>

@@ -10,18 +10,22 @@ function EventByIdPage() {
   const { id } = useParams()
   const event = useSelector(state => state.event)
   const storeId = event.storeId
-  console.log(`storeId is --> ${storeId}`)
   useEffect(() => {
     dispatch(eventActions.getOneEvent(id))
-    dispatch(storeActions.getOneStore(storeId))
   },[dispatch])
+  useEffect(() => {
+    dispatch(storeActions.getOneStore(storeId))
+  },[event])
   const store = useSelector(state => state.stores)
   return(
   <div>
     <h1>{event.name}</h1>
+    <h2>This event is held at: {store.storeName}</h2>
+    <h2>This events game will be: {event.eventGame}</h2>
   </div>
 )
 }
 
 
 export default EventByIdPage;
+

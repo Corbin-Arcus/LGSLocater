@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
-    groupGame: {
+    groupName: {
       type: DataTypes.STRING
     }
   }, {});

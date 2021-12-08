@@ -11,7 +11,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      groupGame: {
+      groupName: {
         type: Sequelize.STRING
       },
       createdAt: {

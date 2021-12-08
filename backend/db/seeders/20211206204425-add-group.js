@@ -10,17 +10,17 @@ module.exports = {
       */
     return queryInterface.bulkInsert('Groups', [
       {
-      groupGame: 'Commander/EDH',
+      groupName: 'The Shire',
       createdAt: new Date(),
       updatedAt: new Date()
       },
       {
-        groupGame: 'Warhammer',
+        groupName: 'Rivendell',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        groupGame: 'DND',
+        groupName: 'Gondor',
         createdAt: new Date(),
         updatedAt: new Date()
       }

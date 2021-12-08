@@ -11,10 +11,10 @@ const getStores = (stores) => {
   }
 }
 
-const getAStore = (stores) => {
+const getAStore = (store) => {
   return{
-    return: GET_STORE,
-    payload: stores
+    type: GET_STORE,
+    payload: store
   }
 }
 
@@ -31,12 +31,11 @@ export const getAllStores = () => async (dispatch) => {
 }
 
 export const getOneStore = (id) => async (dispatch) => {
-  console.log(`getAStore id --> ${id}`)
   const res = await csrfFetch(`/api/stores/${id}`, {
     method: 'GET'
   })
   const data = await res.json()
-  dispatch(getAStore(data.stores))
+  dispatch(getAStore(data.store))
 }
 
 const storesReducer = (state = {}, action) => {
