@@ -45,5 +45,32 @@ router.get(
   })
 )
 
+// Edit event by ID
+router.post(
+  '/:id/editEvent',
+  asyncHandler(async(req,res) => {
+    const{
+      eventId,
+      storeId,
+      name,
+      eventGame,
+      groupId
+    } = req.body
+
+    const event = await Event.findbyPK(eventId)
+
+    event.storeId = storeId;
+    event.name = name;
+    event.eventGame = eventGame;
+    event.groupId = groupId
+
+    event.save()
+
+    res.json({
+      event
+    })
+  })
+)
+
 
 module.exports = router;

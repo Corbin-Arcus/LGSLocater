@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import EventPage from "./components/EventsPage";
 import CreateEventPage from "./components/CreateEventPage";
 import EventByIdPage from "./components/EventByIdPage";
+import EditEventPage from "./components/editEventPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +34,11 @@ function App() {
           <Route path='/events/new'>
             <CreateEventPage />
           </Route>
-          <Route path='/events/:id'>
+          <Route exact path='/events/:id'>
             <EventByIdPage />
+          </Route>
+          <Route exact path='/events/:id/editEvent'>
+            <EditEventPage />
           </Route>
         </Switch>
       )}

@@ -14,7 +14,10 @@ function EventPage() {
   return (
     <div>
       {eventsArr.map(event =>
+      <>
         <h1 key={event.id}><Link to={`/events/${event.id}`}>{event.name}</Link></h1>
+        <Link to={`/events/${event.id}/editEvent`}><button>Edit Event</button></Link>
+      </>
       )}
     </div>
   )

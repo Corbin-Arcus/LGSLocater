@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf'
 const SET_EVENT = 'event/setEvent'
 const CREATE_EVENT = 'event/creatEvent'
 const GET_EVENT = 'event/getEvent'
+const EDIT_EVENT = 'event/editEvent'
 
 const setEvent = (event) => {
   return{
@@ -23,6 +24,34 @@ const getEvent = (event) => {
     type: SET_EVENT,
     payload: event
   }
+}
+
+const editEvent = (event) => {
+  return{
+    type: EDIT_EVENT,
+    payload: event
+  }
+}
+
+export const editOneEvent = (event) => async (dispatch) => {
+  const { eventId,
+    storeId,
+    name,
+    eventGame,
+    groupId } = event
+    console.log(eventId)
+  const res = await csrfFetch(`/api/events/${eventId}/editEvent`, {
+    method: 'POST',
+    body: JSON.stringify({
+      eventId,
+      storeId,
+      name,
+      eventGame,
+      groupId
+    })
+  })
+  const data = await res.json()
+  dispatch(editEvent(data.event))
 }
 
 export const getOneEvent = (id) => async (dispatch) => {
