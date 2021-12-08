@@ -33,13 +33,13 @@ function EditEventPage() {
     }
     else{
       setErrors([])
+      history.push('/events')
       return dispatch(eventActions.editOneEvent({ eventId, name, eventGame, storeId, groupId }))
         .catch(async (res) => {
           const data = await res.json();
           if(data && data.errors) setErrors(data.errors)
         })
     }
-    history.push('/events')
   };
 
   useEffect(() => {

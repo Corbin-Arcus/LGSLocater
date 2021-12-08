@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/events'
 import * as storeActions from '../../store/stores'
 import * as groupActions from '../../store/groups'
+import { useHistory } from 'react-router';
 
 function CreateEventPage() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function CreateEventPage() {
   const [groupId, setGroupId] = useState(0)
 
 
-
+  let history = useHistory()
   const handleSubmit = (e) => {
     e.preventDefault();
     if(name.length < 5 || name.length > 100){
@@ -25,9 +26,7 @@ function CreateEventPage() {
     }
     else{
       setErrors([])
-      setEventGame('')
-      setName('')
-      setStoreId(0)
+      history.push('/events')
       return dispatch(eventActions.createAnEvent({ name, eventGame, storeId, groupId }))
         .catch(async (res) => {
           const data = await res.json();

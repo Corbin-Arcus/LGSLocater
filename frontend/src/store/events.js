@@ -4,6 +4,7 @@ const SET_EVENT = 'event/setEvent'
 const CREATE_EVENT = 'event/creatEvent'
 const GET_EVENT = 'event/getEvent'
 const EDIT_EVENT = 'event/editEvent'
+const DELETE_EVENT = 'event/deleteEvent'
 
 const setEvent = (event) => {
   return{
@@ -33,13 +34,24 @@ const editEvent = (event) => {
   }
 }
 
+const deleteEvent = ()  => {
+  return{
+    type: DELETE_EVENT
+  }
+}
+
+export const deleteAnEvent = (eventId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/events/${eventId}/deleteEvent`, {
+      method: 'DELETE'
+  })
+  dispatch(deleteEvent())
+}
 export const editOneEvent = (event) => async (dispatch) => {
   const { eventId,
     storeId,
     name,
     eventGame,
     groupId } = event
-    console.log(eventId)
   const res = await csrfFetch(`/api/events/${eventId}/editEvent`, {
     method: 'POST',
     body: JSON.stringify({
@@ -97,8 +109,10 @@ const eventReducer = (state = {}, action) => {
     case GET_EVENT:
       newState = {...state, ...action.payload}
       return newState
-      default:
-        return state;
+    case DELETE_EVENT:
+      return state
+    default:
+      return state;
       }
   }
 

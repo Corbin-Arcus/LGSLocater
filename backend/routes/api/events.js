@@ -72,5 +72,17 @@ router.post(
   })
 )
 
+// Delete event
+router.delete(
+  '/:id/deleteEvent',
+  asyncHandler(async(req,res) => {
+    const eventId = req.params.id
+
+    const event = await Event.findByPk(eventId)
+
+    await event.destroy()
+  })
+)
+
 
 module.exports = router;
