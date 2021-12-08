@@ -48,7 +48,8 @@ export const createAnEvent = (event) => async (dispatch) => {
     body: JSON.stringify({
       name,
       eventGame,
-      storeId
+      storeId,
+      groupId
     })
   })
   const data = await res.json()
