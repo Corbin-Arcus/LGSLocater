@@ -21,10 +21,9 @@ function LoginFormPage() {
     return dispatch(sessionActions.login({ credential, password }))
       .catch(async (res) => {
         const data = await res.json();
-        if(data & data.errors) setErrors(data.errors)
+        if(data && data.errors.length > 0) setErrors(data.errors)
       })
   }
-
   return (
     <div className='logInForm'>
       <form onSubmit={handleSubmit}>

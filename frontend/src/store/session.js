@@ -26,6 +26,7 @@ export const login = (user) => async (dispatch) => {
     })
   })
   const data = await response.json();
+  if(data.errors) return data.errors
   dispatch(setUser(data.user));
   return response;
 };

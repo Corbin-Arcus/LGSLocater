@@ -30,7 +30,7 @@ export const getOneEvent = (id) => async (dispatch) => {
     method: 'GET'
   })
   const data = await res.json()
-  dispatch(getEvent(data.events))
+  dispatch(getEvent(data.event))
 }
 
 export const setEvents = () => async (dispatch) => {
@@ -42,7 +42,7 @@ export const setEvents = () => async (dispatch) => {
 }
 
 export const createAnEvent = (event) => async (dispatch) => {
-  const { name, eventGame, storeId} = event;
+  const { name, eventGame, storeId, groupId } = event;
   const res = await csrfFetch('/api/events', {
     method: 'POST',
     body: JSON.stringify({

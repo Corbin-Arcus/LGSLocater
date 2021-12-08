@@ -16,14 +16,6 @@ function CreateEventPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (password === confirmPassword) {
-    //   setErrors([]);
-    //   return dispatch(sessionActions.signup({ email, username, password }))
-    //     .catch(async (res) => {
-    //       const data = await res.json();
-    //       if (data && data.errors) setErrors(data.errors);
-    //     });
-    // }
     if(name.length < 5 || name.length > 100){
       setErrors(['Event name must be between 5 and 100 characters'])
     }
@@ -36,7 +28,7 @@ function CreateEventPage() {
       setEventGame('')
       setName('')
       setStoreId(0)
-      return dispatch(eventActions.createAnEvent({ name, eventGame, storeId }))
+      return dispatch(eventActions.createAnEvent({ name, eventGame, storeId, groupId }))
         .catch(async (res) => {
           const data = await res.json();
           if(data && data.errors) setErrors(data.errors)
@@ -87,14 +79,14 @@ function CreateEventPage() {
           Store
           <select value={storeId} required onChange={(e) => setStoreId(e.target.value)}>
             <option></option>
-            {storesArr.map(store => <option value={store.id}> {store.storeName}</option>)}
+            {storesArr.map(store => <option key={store.id} value={store.id}> {store.storeName}</option>)}
           </select>
         </label>
         <label>
           Group
           <select value={groupId} required onChange={(e) => setGroupId(e.target.value)}>
             <option></option>
-            {groupsArr.map(group => <option value={group.id}> {group.groupGame}</option>)}
+            {groupsArr.map(group => <option key={group.id} value={group.id}> {group.groupGame}</option>)}
           </select>
         </label>
         <button type="submit">Create Event</button>
