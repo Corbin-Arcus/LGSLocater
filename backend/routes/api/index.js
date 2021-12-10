@@ -4,6 +4,7 @@ const usersRouter = require('./users.js')
 const eventsRouter = require('./events.js')
 const storesRouter = require('./stores')
 const groupsRouter = require('./groups')
+const userGroupRouter = require('./userGroup')
 
 router.use('/session', sessionRouter)
 
@@ -14,6 +15,8 @@ router.use('/events', eventsRouter)
 router.use('/stores', storesRouter)
 
 router.use('/groups', groupsRouter)
+
+router.use('/userGroups', userGroupRouter)
 
 
 router.post('/test', function(req, res) {

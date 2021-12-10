@@ -9,9 +9,20 @@ router.get(
   '/',
   asyncHandler(async(req,res) => {
     const groups = await Group.findAll()
-
     res.json({
       groups
+    })
+  })
+)
+
+// Get group by ID
+router.get(
+  '/:id(\\d+)',
+  asyncHandler(async(req, res) => {
+    const groupId = req.params.id
+    const group = await Group.findByPk(groupId)
+    res.json({
+      group
     })
   })
 )
