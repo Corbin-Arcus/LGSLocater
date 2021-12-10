@@ -90,6 +90,9 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState
+    case GET_USER:
+      newState = {...state, ...action.payload}
+      return newState
     default:
       return state;
   }

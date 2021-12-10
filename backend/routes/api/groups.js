@@ -20,12 +20,18 @@ router.get(
   '/:id(\\d+)',
   asyncHandler(async(req, res) => {
     const groupId = req.params.id
-    const group = await Group.findByPk(groupId)
+    const group = await Group.findByPk(groupId, { include:
+      [{
+      model: User
+      }]
+    })
     res.json({
       group
     })
   })
 )
+
+
 
 
 module.exports = router;
