@@ -16,7 +16,7 @@ function GroupPage() {
   return (
     <div>
       <div>
-        {groupsArr.map(group =>
+        {groupsArr?.map(group =>
           <>
             <h1 key={group.id}><Link to={`/groups/${group.id}`}>{group.groupName}</Link>
             <Link to={`/groups/${group.id}/editGroup`}><button>Edit Group</button></Link>
