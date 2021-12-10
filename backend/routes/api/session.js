@@ -68,6 +68,18 @@ router.get(
   }
 )
 
+// Find one user
+router.get(
+  '/:id(\\d+)',
+  asyncHandler(async(req,res) => {
+    const userId = req.params.id
+    const user = await User.findByPk(userId)
+    res.json({
+      user
+    })
+  })
+)
+
 
 module.exports = router;
 

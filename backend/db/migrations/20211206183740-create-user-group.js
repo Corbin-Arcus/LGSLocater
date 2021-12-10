@@ -11,7 +11,6 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
         refrences: {
           model: "Users"
         }
@@ -19,7 +18,6 @@ module.exports = {
       groupId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
         refrences: {
           model: "Groups"
         }

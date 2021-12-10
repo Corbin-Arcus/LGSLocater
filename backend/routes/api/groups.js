@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const { Group } = require('../../db/models')
+const { Group, User } = require('../../db/models')
 
 const router = express.Router();
 
@@ -9,12 +9,29 @@ router.get(
   '/',
   asyncHandler(async(req,res) => {
     const groups = await Group.findAll()
-
     res.json({
       groups
     })
   })
 )
+
+// Get group by ID
+router.get(
+  '/:id(\\d+)',
+  asyncHandler(async(req, res) => {
+    const groupId = req.params.id
+    const group = await Group.findByPk(groupId, {
+      include: {
+        model: User
+      }
+    })
+    res.json({
+      group
+    })
+  })
+)
+
+
 
 
 module.exports = router;

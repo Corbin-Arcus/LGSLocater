@@ -30,6 +30,7 @@ function Navigation({ isLoaded }) {
         <NavLink exact to="/">Home</NavLink>
         <NavLink exact to='/events'>Events</NavLink>
         <NavLink exact to='/events/new'>Create a new Event</NavLink>
+        <NavLink exact to='/groups'>Groups</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
