@@ -21,12 +21,15 @@ function GroupByIdPage() {
     // dispatch(userActions.getUser(user.id))
   }, [dispatch])
 
-  console.log(group)
+  // const userArr = Object.values(group.Users)
+  const users = group.Users
+  console.log(users)
   return(
   <div>
     <div>
       <h1>{group.groupName}</h1>
-      <h2></h2>
+      <h2>Users:</h2>
+      {users?.map(user => <h3 key={user.id}>{user.username}</h3>)}
       <button onClick={joinGroupButton}>Join this Group!</button>
     </div>
   </div>
