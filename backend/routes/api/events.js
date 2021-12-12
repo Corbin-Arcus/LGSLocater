@@ -1,9 +1,31 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { Event } = require('../../db/models')
+const { check } = require('express-validator')
+const { handleValidationErrors } = require('../../utils/validation')
 
 const router = express.Router();
 
+
+const validateCreation = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid name.'),
+  check('eventGame')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a event game.'),
+  check('storeId')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid store.'),
+  check('groupId')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid group.'),
+    handleValidationErrors
+];
 
 // Get all events
 router.get(
@@ -20,6 +42,7 @@ router.get(
 // Create new event
 router.post(
   '/',
+  validateCreation,
   asyncHandler(async(req,res) => {
     const { name, eventGame, storeId } = req.body
 

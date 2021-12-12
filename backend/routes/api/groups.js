@@ -31,6 +31,55 @@ router.get(
   })
 )
 
+// Edit group by ID
+router.post(
+  '/:id/editGroup',
+  asyncHandler(async(req,res) => {
+    const {
+      groupId,
+      groupName
+    } = req.body
+
+    const group = await Group.findByPk(groupId)
+
+    group.groupName = groupName;
+
+    group.save()
+
+    res.json({
+      group
+    })
+  })
+)
+
+// Create new group
+router.post(
+  '/',
+  asyncHandler(async(req,res) => {
+    const { groupName } = req.body
+
+    const newGroup = await Group.create({
+      groupName: groupName
+    })
+
+    return newGroup
+  })
+)
+
+// Delete group
+router.delete(
+  '/:id/deleteGroup',
+  asyncHandler(async(req, res) => {
+    const groupId = req.params.id
+
+    const group = await Group.findByPk(groupId)
+
+    await group.destroy()
+
+    return res.json({})
+  })
+)
+
 
 
 

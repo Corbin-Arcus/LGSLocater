@@ -11,6 +11,9 @@ import EventByIdPage from "./components/EventByIdPage";
 import EditEventPage from "./components/editEventPage";
 import GroupPage from "./components/GroupsPage";
 import GroupByIdPage from "./components/GroupByIdPage";
+import EditGroupPage from "./components/EditGroupPage";
+import CreateGroupPage from "./components/CreateGroupPage";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +42,9 @@ function App() {
           <Route path='/events/new'>
             <CreateEventPage />
           </Route>
+          <Route path='/groups/new'>
+            <CreateGroupPage />
+          </Route>
           <Route exact path='/events/:id'>
             <EventByIdPage />
           </Route>
@@ -47,6 +53,12 @@ function App() {
           </Route>
           <Route exact path='/events/:id/editEvent'>
             <EditEventPage />
+          </Route>
+          <Route exact path='/groups/:id/editGroup'>
+            <EditGroupPage />
+          </Route>
+          <Route>
+            <HomePage />
           </Route>
         </Switch>
       )}

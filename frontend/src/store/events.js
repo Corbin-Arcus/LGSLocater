@@ -93,8 +93,19 @@ export const createAnEvent = (event) => async (dispatch) => {
       groupId
     })
   })
-  const data = await res.json()
-  dispatch(createEvent(data.events))
+  if(res.ok){
+    const data = await res.json()
+    dispatch(createEvent(data.events))
+    return null;
+  }
+  else if (res.status < 500){
+    const data = await res.json()
+    if(data.errors) return data.errors
+  }
+  else {
+    return ['An error occurred. Please try again']
+  }
+
 }
 
 const eventReducer = (state = {}, action) => {

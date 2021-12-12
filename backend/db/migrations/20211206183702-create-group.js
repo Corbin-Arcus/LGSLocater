@@ -12,7 +12,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       groupName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       createdAt: {
         allowNull: false,

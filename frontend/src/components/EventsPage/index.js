@@ -9,6 +9,7 @@ function EventPage() {
   const dispatch = useDispatch()
   const events = useSelector(state => state.event)
   const eventsArr = Object.values(events)
+  const sessionUser = useSelector(state => state.session.user);
   useEffect(() => {
     dispatch(eventActions.setEvents())
   },[dispatch])
@@ -18,15 +19,24 @@ function EventPage() {
     dispatch(eventActions.setEvents())
   }
 
+  const refresh = () => {
+    dispatch(eventActions.setEvents())
+  }
+
   return (
     <div className={styles.outer}>
       <div className={styles.container}>
-        {eventsArr.map(event =>
-        <>
-          <h1 key={event.id}><Link to={`/events/${event.id}`}>{event.name}</Link></h1>
-          <Link to={`/events/${event.id}/editEvent`}><button>Edit Event</button></Link>
+        <h1>Events:</h1>
+        {eventsArr?.map(event =>
+        <div className={styles.eventContainer}>
+          <h2 key={event.id}><Link to={`/events/${event.id}`}>{event.name}</Link></h2>
+          {sessionUser &&
+          <>
+          <Link to={`/events/${event.id}/editEvent`}><button onClick={() => refresh()}>Edit Event</button></Link>
           <button onClick={() => sendId(event)}>Delete Event</button>
-        </>
+          </>
+          }
+        </div>
         )}
       </div>
     </div>

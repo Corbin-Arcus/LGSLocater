@@ -31,7 +31,7 @@ function CreateEventPage() {
       return dispatch(eventActions.createAnEvent({ name, eventGame, storeId, groupId }))
         .catch(async (res) => {
           const data = await res.json();
-          if(data && data.errors) setErrors(data.errors)
+          if(data && data.errors.length > 0) setErrors(data.errors)
         })
 
     }
@@ -49,49 +49,54 @@ function CreateEventPage() {
 
   return (
     <div className={styles.outer}>
-      <div className={styles.createEventForm}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
-          <label>
-            Event Name
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+      <div className={styles.container}>
+        <div className={styles.createEventForm}>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <ul>
+              {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+            <h1>Create an Event!</h1>
+            <label>
+              Event Name
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className={styles.name}
+              />
+            </label>
+            <label>
+              Event Game
+              <select
+              value={eventGame}
               required
-            />
-          </label>
-          <label>
-            Event Game
-            <select
-            value={eventGame}
-            required
-            onChange={(e) => setEventGame(e.target.value)}
-            >
-              <option></option>
-              <option value='Magic the Gathering'>Magic the Gathering</option>
-              <option value='Vanguard'>Vanguard</option>
-              <option value='Warhammer'>Warhammer</option>
-            </select>
-          </label>
-          <label>
-            Store
-            <select value={storeId} required onChange={(e) => setStoreId(e.target.value)}>
-              <option></option>
-              {storesArr.map(store => <option key={store.id} value={store.id}> {store.storeName}</option>)}
-            </select>
-          </label>
-          <label>
-            Group
-            <select value={groupId} required onChange={(e) => setGroupId(e.target.value)}>
-              <option></option>
-              {groupsArr.map(group => <option key={group.id} value={group.id}> {group.groupName}</option>)}
-            </select>
-          </label>
-          <button type="submit">Create Event</button>
-        </form>
+              onChange={(e) => setEventGame(e.target.value)}
+              className={styles.eventGame}
+              >
+                <option></option>
+                <option value='Magic the Gathering'>Magic the Gathering</option>
+                <option value='Vanguard'>Vanguard</option>
+                <option value='Warhammer'>Warhammer</option>
+              </select>
+            </label>
+            <label>
+              Store
+              <select className={styles.store} value={storeId} required onChange={(e) => setStoreId(e.target.value)}>
+                <option></option>
+                {storesArr.map(store => <option key={store.id} value={store.id}> {store.storeName}</option>)}
+              </select>
+            </label>
+            <label>
+              Group
+              <select className={styles.group} value={groupId} required onChange={(e) => setGroupId(e.target.value)}>
+                <option></option>
+                {groupsArr.map(group => <option key={group.id} value={group.id}> {group.groupName}</option>)}
+              </select>
+            </label>
+            <button type="submit">Create Event</button>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@
   border-radius: 50px;
 }
 
-.createEventForm{
+.editGroupForm{
   margin-top: 15px;
   padding-top: 0px;
   padding-left: 5px;
@@ -35,18 +35,6 @@
   justify-content: space-around;
 }
 
-.name{
-  margin-bottom: 15px;
-}
-
-.eventGame{
-  margin-bottom: 15px;
-}
-
-.store{
-  margin-bottom: 15px;
-}
-
-.group{
+.groupName{
   margin-bottom: 15px;
 }
