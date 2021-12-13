@@ -2,6 +2,9 @@ body{
   background-image: url('../images/mt\ fuji.jpg');
   background-repeat:no-repeat;
   background-size:cover;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .welcome{
@@ -15,4 +18,16 @@ body{
    display: flex;
    align-items: center;
    justify-content: center;
+ }
+
+ .footer{
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-weight: bold;
+  text-align: center;
+  font-size: 150%;
+ }
+
+ .link{
+   color:aqua
  }
